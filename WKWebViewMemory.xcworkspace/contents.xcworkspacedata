@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Source/WTF/WTF.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Source/bmalloc/bmalloc.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "container:App/WKWebViewMemoryApp.xcodeproj">
+   </FileRef>
+</Workspace>
