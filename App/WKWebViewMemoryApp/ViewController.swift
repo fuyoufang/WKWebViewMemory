@@ -15,22 +15,30 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        var b = CPP_Wrapper().thresholdForMemoryKillOfActiveProcess()
-        
+        var b = MemoryPressureWrapper.thresholdForMemoryKillOfActiveProcess()
         var kb = b / 1024
         var m = kb / 1024
         var g = m / 1024
-        debugPrint("--1--")
-        debugPrint("\(kb)kB, \(m)M, \(g)G")
+        debugPrint("-- MemoryPressureWrapper.thresholdForMemoryKillOfActiveProcess --")
+        debugPrint("\(b)B, \(kb)kB, \(m)M, \(g)G")
         debugPrint("----")
         
-        b = WKWebViewMemoryAppWrapper.thresholdForMemoryKillOfActiveProcess()
+        b = MemoryPressureWrapper.thresholdForMemoryKillOfInactiveProcess()
         kb = b / 1024
         m = kb / 1024
         g = m / 1024
         
-        debugPrint("--2--")
-        debugPrint("\(kb)kB, \(m)M, \(g)G")
+        debugPrint("-- MemoryPressureWrapper.thresholdForMemoryKillOfInactiveProcess --")
+        debugPrint("\(b)B, \(kb)kB, \(m)M, \(g)G")
+        debugPrint("----")
+        
+        b = WTFWrapper.thresholdForMemoryKillOfActiveProcess()
+        kb = b / 1024
+        m = kb / 1024
+        g = m / 1024
+        
+        debugPrint("-- WTFWrapper.thresholdForMemoryKillOfActiveProcess --")
+        debugPrint("\(b)B, \(kb)kB, \(m)M, \(g)G")
         debugPrint("----")
         
     }

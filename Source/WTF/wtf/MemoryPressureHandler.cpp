@@ -94,14 +94,13 @@ static const char* toString(MemoryUsagePolicy policy)
     return "";
 }
 #endif
-
-static size_t thresholdForMemoryKillOfActiveProcess(unsigned tabCount)
+size_t thresholdForMemoryKillOfActiveProcess(unsigned tabCount)
 {
     size_t baseThreshold = ramSize() > 16 * GB ? 15 * GB : 7 * GB;
     return baseThreshold + tabCount * GB;
 }
 
-static size_t thresholdForMemoryKillOfInactiveProcess(unsigned tabCount)
+size_t thresholdForMemoryKillOfInactiveProcess(unsigned tabCount)
 {
 #if CPU(X86_64) || CPU(ARM64)
     size_t baseThreshold = 3 * GB + tabCount * GB;

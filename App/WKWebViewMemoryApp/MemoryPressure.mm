@@ -1,4 +1,4 @@
-#include "CppTest.hpp"
+#include "MemoryPressure.hpp"
 #include <iostream>
 #include <mutex>
 #include <array>
@@ -43,7 +43,7 @@ extern "C" {
 int memorystatus_control(uint32_t command, int32_t pid, uint32_t flags, void *buffer, size_t buffersize);
 }
 
-size_t CppTest::jetsamLimit()
+size_t MemoryPressure::jetsamLimit()
 {
     memorystatus_memlimit_properties_t properties;
     pid_t pid = getpid();
@@ -54,7 +54,7 @@ size_t CppTest::jetsamLimit()
     return static_cast<size_t>(properties.memlimit_active) * MB;
 }
 
-size_t CppTest::memorySizeAccordingToKernel()
+size_t MemoryPressure::memorySizeAccordingToKernel()
 {
     host_basic_info_data_t hostInfo;
 
@@ -71,19 +71,24 @@ size_t CppTest::memorySizeAccordingToKernel()
     return static_cast<size_t>(hostInfo.max_mem);
 }
 
-size_t CppTest::computeAvailableMemory()
+size_t MemoryPressure::computeAvailableMemory()
 {
-    size_t sizeAccordingToKernel = memorySizeAccordingToKernel();
-    sizeAccordingToKernel = std::min(sizeAccordingToKernel, jetsamLimit());
+    size_t memorySize = memorySizeAccordingToKernel();
+    size_t sizeJetsamLimit = jetsamLimit();
+    cout << "jetsamLimit:" << sizeJetsamLimit / 1024 / 1024 << "MB\n";
+    cout << "memorySize:" << memorySize / 1024 / 1024 << "MB\n";
+    size_t sizeAccordingToKernel = std::min(memorySize, sizeJetsamLimit);
     size_t multiple = 128 * MB;
 
     // Round up the memory size to a multiple of 128MB because max_mem may not be exactly 512MB
     // (for example) and we have code that depends on those boundaries.
-    return ((sizeAccordingToKernel + multiple - 1) / multiple) * multiple;
+    sizeAccordingToKernel = ((sizeAccordingToKernel + multiple - 1) / multiple) * multiple;
+    cout << "sizeAccordingToKernel:" << sizeAccordingToKernel / 1024 / 1024 << "MB\n";
+    return sizeAccordingToKernel;
 }
 
 
-size_t CppTest::availableMemory()
+size_t MemoryPressure::availableMemory()
 {
     static size_t availableMemory;
     static std::once_flag onceFlag;
@@ -94,12 +99,12 @@ size_t CppTest::availableMemory()
 }
 
 
-size_t CppTest::computeRAMSize()
+size_t MemoryPressure::computeRAMSize()
 {
     return availableMemory();
 }
 
-size_t CppTest::ramSize()
+size_t MemoryPressure::ramSize()
 {
     static size_t ramSize;
     static std::once_flag onceFlag;
@@ -110,27 +115,21 @@ size_t CppTest::ramSize()
 }
 
 
-size_t CppTest::thresholdForMemoryKillOfActiveProcess2(unsigned tabCount)
+size_t MemoryPressure::thresholdForMemoryKillOfActiveProcess(unsigned tabCount)
 {
-    cout << "ramSize:" << ramSize() << "\n";
+    size_t ramSizeV = ramSize();
+    cout << "ramSize:" << ramSizeV / 1024 / 1024 << "MB\n";
     
-    size_t baseThreshold = ramSize() > 16 * GB ? 15 * GB : 7 * GB;
+    size_t baseThreshold = ramSizeV > 16 * GB ? 15 * GB : 7 * GB;
     return baseThreshold + tabCount * GB;
 }
 
-size_t CppTest::thresholdForMemoryKillOfInactiveProcess(unsigned tabCount)
+size_t MemoryPressure::thresholdForMemoryKillOfInactiveProcess(unsigned tabCount)
 {
 //#if CPU(X86_64) || CPU(ARM64)
-//    size_t baseThreshold = 3 * GB + tabCount * GB;
+    size_t baseThreshold = 3 * GB + tabCount * GB;
 //#else
-    size_t baseThreshold = tabCount > 1 ? 3 * GB : 2 * GB;
+//    size_t baseThreshold = tabCount > 1 ? 3 * GB : 2 * GB;
 //#endif
     return std::min(baseThreshold, static_cast<size_t>(ramSize() * 0.9));
-}
-
-size_t CppTest::thresholdForMemoryKillOfActiveProcess() {
-//    MemoryPressureHandler::singleton();
-    cout << "ActiveProcess:" << thresholdForMemoryKillOfActiveProcess2(1) << "\n";
-    return thresholdForMemoryKillOfInactiveProcess(1);
-    
 }

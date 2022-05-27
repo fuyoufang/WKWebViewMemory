@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C551792C28408395001E5392 /* Base.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C551792B28408395001E5392 /* Base.xcconfig */; };
-		C5517930284083B6001E5392 /* WKWebViewMemoryAppWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = C551792F284083B6001E5392 /* WKWebViewMemoryAppWrapper.mm */; };
+		C5517930284083B6001E5392 /* WTFWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = C551792F284083B6001E5392 /* WTFWrapper.mm */; };
 		C5E45BDD28406D0600CD4B7A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E45BDC28406D0600CD4B7A /* AppDelegate.swift */; };
 		C5E45BE128406D0600CD4B7A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E45BE028406D0600CD4B7A /* ViewController.swift */; };
 		C5E45BE428406D0600CD4B7A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5E45BE228406D0600CD4B7A /* Main.storyboard */; };
@@ -17,8 +17,8 @@
 		C5E45BF428406D0700CD4B7A /* WKWebViewMemoryAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E45BF328406D0700CD4B7A /* WKWebViewMemoryAppTests.swift */; };
 		C5E45BFE28406D0700CD4B7A /* WKWebViewMemoryAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E45BFD28406D0700CD4B7A /* WKWebViewMemoryAppUITests.swift */; };
 		C5E45C0028406D0700CD4B7A /* WKWebViewMemoryAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E45BFF28406D0700CD4B7A /* WKWebViewMemoryAppUITestsLaunchTests.swift */; };
-		C5E45C1428406E1C00CD4B7A /* CPP-Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = C5E45C0F28406E1B00CD4B7A /* CPP-Wrapper.mm */; };
-		C5E45C1528406E1C00CD4B7A /* CppTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = C5E45C1328406E1B00CD4B7A /* CppTest.mm */; };
+		C5E45C1428406E1C00CD4B7A /* MemoryPressureWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = C5E45C0F28406E1B00CD4B7A /* MemoryPressureWrapper.mm */; };
+		C5E45C1528406E1C00CD4B7A /* MemoryPressure.mm in Sources */ = {isa = PBXBuildFile; fileRef = C5E45C1328406E1B00CD4B7A /* MemoryPressure.mm */; };
 		C5E45C1A28406F2700CD4B7A /* libbmalloc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E45C1928406F2700CD4B7A /* libbmalloc.a */; };
 		C5E45C44284081F800CD4B7A /* libWTF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E45C43284081F800CD4B7A /* libWTF.a */; };
 		C5E45C45284082A300CD4B7A /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E45C3E2840787100CD4B7A /* libicucore.tbd */; };
@@ -43,8 +43,8 @@
 
 /* Begin PBXFileReference section */
 		C551792B28408395001E5392 /* Base.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
-		C551792E284083B6001E5392 /* WKWebViewMemoryAppWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKWebViewMemoryAppWrapper.h; sourceTree = "<group>"; };
-		C551792F284083B6001E5392 /* WKWebViewMemoryAppWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = WKWebViewMemoryAppWrapper.mm; sourceTree = "<group>"; };
+		C551792E284083B6001E5392 /* WTFWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WTFWrapper.h; sourceTree = "<group>"; };
+		C551792F284083B6001E5392 /* WTFWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = WTFWrapper.mm; sourceTree = "<group>"; };
 		C5E45BD928406D0600CD4B7A /* WKWebViewMemoryApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WKWebViewMemoryApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5E45BDC28406D0600CD4B7A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C5E45BE028406D0600CD4B7A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,10 +58,10 @@
 		C5E45BFD28406D0700CD4B7A /* WKWebViewMemoryAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebViewMemoryAppUITests.swift; sourceTree = "<group>"; };
 		C5E45BFF28406D0700CD4B7A /* WKWebViewMemoryAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebViewMemoryAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C5E45C0C28406E1B00CD4B7A /* WKWebViewMemoryApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WKWebViewMemoryApp-Bridging-Header.h"; sourceTree = "<group>"; };
-		C5E45C0F28406E1B00CD4B7A /* CPP-Wrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "CPP-Wrapper.mm"; sourceTree = "<group>"; };
-		C5E45C1128406E1B00CD4B7A /* CPP-Wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CPP-Wrapper.h"; sourceTree = "<group>"; };
-		C5E45C1228406E1B00CD4B7A /* CppTest.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CppTest.hpp; sourceTree = "<group>"; };
-		C5E45C1328406E1B00CD4B7A /* CppTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CppTest.mm; sourceTree = "<group>"; };
+		C5E45C0F28406E1B00CD4B7A /* MemoryPressureWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MemoryPressureWrapper.mm; sourceTree = "<group>"; };
+		C5E45C1128406E1B00CD4B7A /* MemoryPressureWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoryPressureWrapper.h; sourceTree = "<group>"; };
+		C5E45C1228406E1B00CD4B7A /* MemoryPressure.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MemoryPressure.hpp; sourceTree = "<group>"; };
+		C5E45C1328406E1B00CD4B7A /* MemoryPressure.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MemoryPressure.mm; sourceTree = "<group>"; };
 		C5E45C1928406F2700CD4B7A /* libbmalloc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libbmalloc.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5E45C3E2840787100CD4B7A /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		C5E45C43284081F800CD4B7A /* libWTF.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libWTF.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,12 +128,12 @@
 		C5E45BDB28406D0600CD4B7A /* WKWebViewMemoryApp */ = {
 			isa = PBXGroup;
 			children = (
-				C551792E284083B6001E5392 /* WKWebViewMemoryAppWrapper.h */,
-				C551792F284083B6001E5392 /* WKWebViewMemoryAppWrapper.mm */,
-				C5E45C1128406E1B00CD4B7A /* CPP-Wrapper.h */,
-				C5E45C0F28406E1B00CD4B7A /* CPP-Wrapper.mm */,
-				C5E45C1228406E1B00CD4B7A /* CppTest.hpp */,
-				C5E45C1328406E1B00CD4B7A /* CppTest.mm */,
+				C551792E284083B6001E5392 /* WTFWrapper.h */,
+				C551792F284083B6001E5392 /* WTFWrapper.mm */,
+				C5E45C1128406E1B00CD4B7A /* MemoryPressureWrapper.h */,
+				C5E45C0F28406E1B00CD4B7A /* MemoryPressureWrapper.mm */,
+				C5E45C1228406E1B00CD4B7A /* MemoryPressure.hpp */,
+				C5E45C1328406E1B00CD4B7A /* MemoryPressure.mm */,
 				C5E45BDC28406D0600CD4B7A /* AppDelegate.swift */,
 				C5E45BE028406D0600CD4B7A /* ViewController.swift */,
 				C5E45BE228406D0600CD4B7A /* Main.storyboard */,
@@ -306,10 +306,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5E45BE128406D0600CD4B7A /* ViewController.swift in Sources */,
-				C5517930284083B6001E5392 /* WKWebViewMemoryAppWrapper.mm in Sources */,
-				C5E45C1528406E1C00CD4B7A /* CppTest.mm in Sources */,
+				C5517930284083B6001E5392 /* WTFWrapper.mm in Sources */,
+				C5E45C1528406E1C00CD4B7A /* MemoryPressure.mm in Sources */,
 				C5E45BDD28406D0600CD4B7A /* AppDelegate.swift in Sources */,
-				C5E45C1428406E1C00CD4B7A /* CPP-Wrapper.mm in Sources */,
+				C5E45C1428406E1C00CD4B7A /* MemoryPressureWrapper.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

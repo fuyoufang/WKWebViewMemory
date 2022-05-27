@@ -43,6 +43,9 @@
 
 namespace WTF {
 
+size_t thresholdForMemoryKillOfActiveProcess(unsigned tabCount);
+size_t thresholdForMemoryKillOfInactiveProcess(unsigned tabCount);
+
 enum class MemoryPressureStatus : uint8_t {
     Normal,
 
