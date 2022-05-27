@@ -10,17 +10,26 @@ import WebKit
 
 // https://stackoverflow.com/questions/27565301/wkwebview-goes-blank-after-memory-warning
 
-class ViewController: UITableViewController {
+class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        let b = CPP_Wrapper().thresholdForMemoryKillOfActiveProcess()
+        var b = CPP_Wrapper().thresholdForMemoryKillOfActiveProcess()
         
-        let kb = b / 1024
-        let m = kb / 1024
-        let g = m / 1024
+        var kb = b / 1024
+        var m = kb / 1024
+        var g = m / 1024
+        debugPrint("--1--")
+        debugPrint("\(kb)kB, \(m)M, \(g)G")
         debugPrint("----")
+        
+        b = WKWebViewMemoryAppWrapper.thresholdForMemoryKillOfActiveProcess()
+        kb = b / 1024
+        m = kb / 1024
+        g = m / 1024
+        
+        debugPrint("--2--")
         debugPrint("\(kb)kB, \(m)M, \(g)G")
         debugPrint("----")
         

@@ -11,6 +11,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WKWebViewMemoryAppWrapper : NSObject
 
++ (size_t)thresholdForMemoryKillOfActiveProcess;
++ (size_t)thresholdForMemoryKillOfInactiveProcess;
+
 @end
 
 NS_ASSUME_NONNULL_END
